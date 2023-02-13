@@ -1,0 +1,16 @@
+--liquibase formatted sql
+
+--changeset naveen:2
+INSERT INTO PHONE (id,name) VALUES
+  (NEXT VALUE FOR PHONE_SEQUENCE,'Samsung Galaxy S9'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'2xSamsung Galaxy S8'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'Motorola Nexus 6'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'OnePlus 9'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'Apple iPhone 13'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'Apple iPhone 12'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'Apple iPhone 11'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'iPhone X'),
+  (NEXT VALUE FOR PHONE_SEQUENCE,'Nokia 3310');
+
+
+

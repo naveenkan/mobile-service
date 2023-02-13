@@ -1,0 +1,10 @@
+[
+  {
+    "deviceName": "SamsungGalaxyS9",
+    "technology": "GSM",
+    "_2G_bands": "GSM 1800 / 1900 / 850 / 900 MHz",
+    "_3G_bands": "UMTS 1900 / 2100 / 850 / 900 MHz",
+    "_4G_bands": "TD-LTE 2600(band 38) / 2300(band 40) /)"
+
+  }
+]

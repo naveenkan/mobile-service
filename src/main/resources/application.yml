@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+management:
+    endpoints:
+      health.show-details: always
+      web:
+        exposure:
+          include: '*'
+
+resilience4j.retry:
+  configs:
+    default:
+      maxAttempts: 3
+      waitDuration: 100
+      retryExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.util.concurrent.TimeoutException
+        - java.io.IOException
+  instances:
+    fono-api:
+      baseConfig: default
+
+resilience4j.circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+    instances:
+      fono-api:
+        baseConfig: default
+        recordFailurePredicate: com.mobile.exception.FonoApiRecordFailurePredicate
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  jpa:
+    hibernate:
+      ddl-auto: none
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+fono-api:
+  baseUrl: http://localhost:9999/v1
+  cache:
+    name: fono
+    duration: 4h
